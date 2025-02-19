@@ -1,0 +1,1 @@
+# pulso-clock-e-an-lise-temporal
