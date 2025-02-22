@@ -4,9 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Pulso, CLock e Análise Temporal</title>
 </head>
-<body>
+<body id="body">
+    <section id="analise_temporal">
+        <div class="analise_temporal_info">
+            <p><span>ANÁLISE TEMPORAL:</span>Ad dolor expedita qui voluptas aliquid qui molestias consequatur sit officiis possimus eum ullam expedita et veritatis inventore quo rerum voluptatibus. Non temporibus similique sed molestiae tenetur hic quaerat dicta et nihil quos. Non vero recusandae ut minus repellendus vel tempore nobis sit laborum quia non doloribus dolorem est nihil pariatur est amet laudantium.</p>
+        </div>
+        <div class="analise_temporal_ondas">
+            <div>
+                <input type="number" name="bit0" id="at_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <div class="linha_horizontal" id="linha_bit0"></div>
+            </div>
+            <div class="linha_vertical linha_vertical_invisivel" id="lv_0"></div>
+            <div>
+                <input type="number" name="bit1" id="at_bit1" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <div class="linha_horizontal" id="linha_bit1"></div>
+            </div>
+            <div class="linha_vertical linha_vertical_invisivel" id="lv_1"></div>
+            <div>
+                <input type="number" name="bit2" id="at_bit2" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <div class="linha_horizontal" id="linha_bit2"></div>
+            </div>
+            <div class="linha_vertical linha_vertical_invisivel" id="lv_2"></div>
+            <div>
+                <input type="number" name="bit3" id="at_bit3" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <div class="linha_horizontal" id="linha_bit3"></div>
+            </div>
+            <div class="linha_vertical linha_vertical_invisivel" id="lv_3"></div>
+            <div>
+                <input type="number" name="bit4" id="at_bit4" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <div class="linha_horizontal" id="linha_bit4"></div>
+            </div>
+            <div class="linha_vertical linha_vertical_invisivel" id="lv_4"></div>
+            <div>
+                <input type="number" name="bit5" id="at_bit5" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <div class="linha_horizontal" id="linha_bit5"></div>
+            </div>
+            <div class="linha_vertical linha_vertical_invisivel" id="lv_5"></div>
+            <div>
+                <input type="number" name="bit6" id="at_bit6" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <div class="linha_horizontal" id="linha_bit6"></div>
+            </div>
+            <div class="linha_vertical linha_vertical_invisivel" id="lv_6"></div>
+            <div>
+                <input type="number" name="bit7" id="at_bit7" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <div class="linha_horizontal" id="linha_bit7"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pulso">
+        <div class="pulso_info">
+            <p><span>PULSO:</span>Ad dolor expedita qui voluptas aliquid qui molestias consequatur sit officiis possimus eum ullam expedita et veritatis inventore quo rerum voluptatibus. Non temporibus similique sed molestiae tenetur hic quaerat dicta et nihil quos. Non vero recusandae ut minus repellendus vel tempore nobis sit laborum quia non doloribus dolorem est nihil pariatur est amet laudantium.</p>
+        </div>
+    </section>
+
+    <section id="clock">
+        <div class="clock_info">
+            <p><span>CLOCK:</span>Ad dolor expedita qui voluptas aliquid qui molestias consequatur sit officiis possimus eum ullam expedita et veritatis inventore quo rerum voluptatibus. Non temporibus similique sed molestiae tenetur hic quaerat dicta et nihil quos. Non vero recusandae ut minus repellendus vel tempore nobis sit laborum quia non doloribus dolorem est nihil pariatur est amet laudantium.</p>
+        </div>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>

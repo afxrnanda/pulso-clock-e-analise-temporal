@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    width: 100%;
+    font-family: "Inter", serif;
+}
+
+section {
+    margin: 16px 12px 0;
+}
+
+.analise_temporal_ondas {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.analise_temporal_ondas div input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.analise_temporal_ondas div input {
+    width: 100%;
+    max-width: 150px;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-size: 100px;
+}
+
+.linha_vertical {
+    width: 10px;
+    height: 160px;
+    background-color: #000;
+    position: relative;
+    bottom: 29px;
+}
+
+.linha_vertical_invisivel {
+    display: none;
+}
+
+.linha_horizontal {
+    width: 150px;
+    height: 10px;
+    background-color: #000;
+}
+
+.linha_horizontal_1 {
+    position: relative;
+    bottom: 150px;
+}
