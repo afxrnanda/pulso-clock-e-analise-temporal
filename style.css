@@ -16,13 +16,13 @@ section {
     margin: 16px 12px 0;
 }
 
-.analise_temporal_ondas {
+.analise_temporal_ondas, .clock_ondas, .entrada1_ondas, .entrada2_ondas, .saida_ondas {
     display: flex;
     justify-content: center;
     margin-top: 50px;
 }
 
-.analise_temporal_ondas div input::-webkit-inner-spin-button {
+.analise_temporal_ondas div input::-webkit-inner-spin-button, .clock_ondas div input::-webkit-inner-spin-button, .entrada1_ondas div input::-webkit-inner-spin-button, .entrada2_ondas div input::-webkit-inner-spin-button, .saida_ondas div input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -36,7 +36,7 @@ section {
     font-size: 100px;
 }
 
-.linha_vertical {
+.analise_temporal_ondas .linha_vertical {
     width: 10px;
     height: 160px;
     background-color: #000;
@@ -48,13 +48,41 @@ section {
     display: none;
 }
 
-.linha_horizontal {
+.analise_temporal_ondas div .linha_horizontal {
     width: 150px;
     height: 10px;
     background-color: #000;
 }
 
-.linha_horizontal_1 {
+.analise_temporal_ondas div .linha_horizontal_1 {
     position: relative;
     bottom: 150px;
+}
+
+.clock_ondas div input, .entrada1_ondas div input, .entrada2_ondas div input, .saida_ondas div input {
+    width: 100%;
+    max-width: 120px;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-size: 80px;
+}
+
+.clock_ondas .linha_vertical, .entrada1_ondas .linha_vertical, .entrada2_ondas .linha_vertical, .saida_ondas .linha_vertical {
+    width: 10px;
+    height: 130px;
+    background-color: #000;
+    position: relative;
+    bottom: 23px;
+}
+
+.clock_ondas div .linha_horizontal, .entrada1_ondas div .linha_horizontal, .entrada2_ondas div .linha_horizontal, .saida_ondas div .linha_horizontal {
+    width: 120px;
+    height: 10px;
+    background-color: #000;
+}
+
+.clock_ondas div .linha_horizontal_1, .entrada1_ondas div .linha_horizontal_1, .entrada2_ondas div .linha_horizontal_1, .saida_ondas div .linha_horizontal_1 {
+    position: relative;
+    bottom: 120px;
 }
