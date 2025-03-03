@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Pulso, CLock e Análise Temporal</title>
 </head>
 <body id="body">
@@ -58,15 +59,32 @@
     </section>
 
     <!--PULSO TEMPORAL--> 
-    <section id="pulso">
-        <div class="pulso_info">
-            <p><span>PULSO:</span> Ad dolor expedita qui voluptas aliquid qui molestias consequatur sit officiis possimus eum ullam expedita et veritatis inventore quo rerum voluptatibus. Non temporibus similique sed molestiae tenetur hic quaerat dicta et nihil quos. Non vero recusandae ut minus repellendus vel tempore nobis sit laborum quia non doloribus dolorem est nihil pariatur est amet laudantium.</p>
+    <div class="container">
+        <h1>Gráfico de Onda de Pulso</h1>
+        
+        <!-- Campo de entrada para o tempo do clock -->
+        <div class="inputs">
+            <label for="clockTime">Tempo do Clock (ms):</label>
+            <input type="number" id="clockTime" placeholder="Ex: 100" oninput="updateWave()">
+            
+            <!-- Caixinhas para selecionar o tipo de pulso -->
+            <div class="pulse-selection">
+                <div class="pulse-option" onclick="selectPulse('positive')">
+                    <input type="radio" id="positivePulse" name="pulseType" checked>
+                    <label for="positivePulse">Pulso Positivo</label>
+                </div>
+                <div class="pulse-option" onclick="selectPulse('negative')">
+                    <input type="radio" id="negativePulse" name="pulseType">
+                    <label for="negativePulse">Pulso Negativo</label>
+                </div>
+            </div>
         </div>
-        <div class="pulso_selecao">
-            <button onclick="selecionarPulso('Positivo')">Pulso Positivo</button>
-            <button onclick="selecionarPulso('Negativo')">Pulso Negativo</button>
-        </div>
-    </section>
+
+        <!-- Área do gráfico -->
+        <canvas id="waveCanvas"></canvas>
+    </div>
+
+    <!------------------------------------------------------------>
 
     <section id="clock">
         <div class="clock_info">

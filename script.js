@@ -29,3 +29,67 @@ function mudar_ondas() {
         });
     });
 }
+
+const canvas = document.getElementById("waveCanvas");
+const context = canvas.getContext("2d");
+canvas.width = 800;
+canvas.height = 400;
+
+let pulseType = "positive"; // Tipo de pulso padrão
+
+function drawWave(clockTime) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const midY = canvas.height / 2;
+    const amplitude = 80;
+    
+    // Desenha os eixos X e Y
+    context.beginPath();
+    context.moveTo(50, 0);
+    context.lineTo(50, canvas.height);
+    context.moveTo(50, midY);
+    context.lineTo(canvas.width, midY);
+    context.strokeStyle = "black";
+    context.lineWidth = 2;
+    context.stroke();
+
+    let x = 50;  // Começa a partir de 50px (depois do eixo Y)
+    context.beginPath();
+    context.moveTo(x, midY);
+
+    // Converte tempo para pixels (escala: 1ms = 2px)
+    const scale = 2;
+    const pulseLength = clockTime * scale;
+
+    while (x < canvas.width) {
+        if (pulseType === "positive") {
+            context.lineTo(x, midY - amplitude);
+            x += pulseLength;
+            context.lineTo(x, midY - amplitude);
+            context.lineTo(x, midY);
+        } else {
+            context.lineTo(x, midY + amplitude);
+            x += pulseLength;
+            context.lineTo(x, midY + amplitude);
+            context.lineTo(x, midY);
+        }
+    }
+
+    context.strokeStyle = "blue";
+    context.lineWidth = 2;
+    context.stroke();
+}
+
+function updateWave() {
+    const clockTime = parseInt(document.getElementById("clockTime").value) || 100;
+    drawWave(clockTime);
+}
+
+function selectPulse(type) {
+    pulseType = type;
+    updateWave();
+}
+
+// Configuração inicial
+document.getElementById("clockTime").value = 100; // Valor padrão
+updateWave(); // Desenha o gráfico inicial
