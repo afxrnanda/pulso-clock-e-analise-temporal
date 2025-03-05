@@ -30,10 +30,11 @@ function mudar_ondas() {
     });
 }
 
+//------------------
 const canvas = document.getElementById("waveCanvas");
 const context = canvas.getContext("2d");
-canvas.width = 800;
-canvas.height = 400;
+canvas.width = 1200; 
+canvas.height = 600;
 
 let pulseType = "positive"; // Tipo de pulso padrão
 
@@ -75,8 +76,8 @@ function drawWave(clockTime) {
         }
     }
 
-    context.strokeStyle = "blue";
-    context.lineWidth = 2;
+    context.strokeStyle = "red";
+    context.lineWidth = 4;
     context.stroke();
 }
 
