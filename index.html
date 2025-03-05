@@ -13,7 +13,7 @@
 <body id="body">
     <section id="analise_temporal">
         <div class="analise_temporal_info">
-            <p><span>ANÁLISE TEMPORAL:</span> Ad dolor expedita qui voluptas aliquid qui molestias consequatur sit officiis possimus eum ullam expedita et veritatis inventore quo rerum voluptatibus. Non temporibus similique sed molestiae tenetur hic quaerat dicta et nihil quos. Non vero recusandae ut minus repellendus vel tempore nobis sit laborum quia non doloribus dolorem est nihil pariatur est amet laudantium.</p>
+            <p><span>ANÁLISE TEMPORAL:</span> É representada por ondas quadradas, onde os sinais sobem para nível alto (1) e descem para nível baixo (0), mostrando a variação dos estados ao longo do tempo. Esses gráficos de temporização ajudam a visualizar atrasos de propagação, tempos de setup e hold, além da sincronização dos sinais em circuitos digitais. Altere os bits abaixo e veja como a onda se comporta:</p>
         </div>
         <div class="analise_temporal_ondas">
             <div>
@@ -58,37 +58,38 @@
         </div>
     </section>
 
-    <!--PULSO TEMPORAL--> 
-    <div class="container">
-        <h1>Gráfico de Onda de Pulso</h1>
-        
-        <!-- Campo de entrada para o tempo do clock -->
-        <div class="inputs">
-            <label for="clockTime">Tempo do Clock (ms):</label>
-            <input type="number" id="clockTime" placeholder="Ex: 100" oninput="updateWave()">
-            
-            <!-- Caixinhas para selecionar o tipo de pulso -->
-            <div class="pulse-selection">
-                <div class="pulse-option" onclick="selectPulse('positive')">
-                    <input type="radio" id="positivePulse" name="pulseType" checked>
-                    <label for="positivePulse">Pulso Positivo</label>
-                </div>
-                <div class="pulse-option" onclick="selectPulse('negative')">
-                    <input type="radio" id="negativePulse" name="pulseType">
-                    <label for="negativePulse">Pulso Negativo</label>
+    <section id="pulso">
+        <div class="pulso_info">
+            <p><span>PULSO:</span> É uma variação de nível lógico em um sinal digital, podendo ser positivo quando ocorre em nível alto ou negativo quando ocorre em nível baixo. A transição entre esses níveis leva um determinado tempo, por isso as ondas não são retas como na representação da análise temporal. Abaixo você pode entender como funciona o pulso alterando o tipo de pulso e o tempo do clock:</p>
+        </div>
+        <div class="container">    
+            <!-- Campo de entrada para o tempo do clock -->
+            <div class="inputs">
+                <label for="clockTime">Tempo do Clock (ms):</label>
+                <input type="number" id="clockTime" placeholder="Ex: 100" oninput="updateWave()">
+                
+                <!-- Caixinhas para selecionar o tipo de pulso -->
+                <div class="pulse-selection">
+                    <div class="pulse-option" onclick="selectPulse('positive')">
+                        <input type="radio" id="positivePulse" name="pulseType" checked>
+                        <label for="positivePulse">Pulso Positivo</label>
+                    </div>
+                    <div class="pulse-option" onclick="selectPulse('negative')">
+                        <input type="radio" id="negativePulse" name="pulseType">
+                        <label for="negativePulse">Pulso Negativo</label>
+                    </div>
                 </div>
             </div>
+    
+            <!-- Área do gráfico -->
+            <canvas id="waveCanvas" width="1200" height="600"></canvas>
         </div>
-
-        <!-- Área do gráfico -->
-        <canvas id="waveCanvas" width="1200" height="600"></canvas>
-    </div>
-
-    <!------------------------------------------------------------>
+    
+    </section>
 
     <section id="clock">
         <div class="clock_info">
-            <p><span>CLOCK:</span> Ad dolor expedita qui voluptas aliquid qui molestias consequatur sit officiis possimus eum ullam expedita et veritatis inventore quo rerum voluptatibus. Non temporibus similique sed molestiae tenetur hic quaerat dicta et nihil quos. Non vero recusandae ut minus repellendus vel tempore nobis sit laborum quia non doloribus dolorem est nihil pariatur est amet laudantium.</p>
+            <p><span>CLOCK:</span> É um trem de pulsos periódicos em forma de onda quadrada, utilizado para sincronizar operações em sistemas digitais. Em sistemas síncronos, as mudanças de estado ocorrem em momentos específicos, determinados pelas bordas do clock, que podem ser positivas ou negativas. A frequência do clock, medida em hertz (Hz), define a velocidade de operação do sistema. Abaixo você pode entender o funcionamento do clock alterando o tipo de transição, o tamanho da onda, as entradas e a operação, e verificando como essas mudanças afetam a saída.</p>
         </div>
         <div class="seletores">
             <div class="transicao-option">
