@@ -90,8 +90,32 @@
         <div class="clock_info">
             <p><span>CLOCK:</span> Ad dolor expedita qui voluptas aliquid qui molestias consequatur sit officiis possimus eum ullam expedita et veritatis inventore quo rerum voluptatibus. Non temporibus similique sed molestiae tenetur hic quaerat dicta et nihil quos. Non vero recusandae ut minus repellendus vel tempore nobis sit laborum quia non doloribus dolorem est nihil pariatur est amet laudantium.</p>
         </div>
-
+        <div class="seletores">
+            <div class="transicao-option">
+                <input type="radio" id="transicaoPositiva" name="pulseType" checked>
+                <label for="transicaoPositiva">Transição Positiva</label>
+                <br>
+                <input type="radio" id="transicaoNegativa" name="pulseType">
+                <label for="transicaoNegativa">Transição Negativa</label>
+            </div>
+            <div class="tempo">
+                <div>
+                    <label for="tempo">T =</label>
+                    <input type="text" name="tempo" id="tempo_seletor">
+                </div>
+                <div>
+                    <label for="tempo">X =</label>
+                    <input type="text" name="tempo" id="tempo_seletor">
+                </div>
+            </div>
+            <div class="saida">
+                <label for="saida">S = E1</label>
+                <input type="text" name="" id="">
+                <label for="saida">E2</label>
+            </div>
+        </div>
         <div class="entrada1_ondas">
+            <div class="entradas">E1</div>
             <div>
                 <input type="number" name="bit0" id="e1_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
                 <div class="linha_horizontal" id="e1_linha_bit0"></div>
@@ -134,6 +158,7 @@
         </div>
 
         <div class="entrada2_ondas">
+            <div class="entradas">E2</div>
             <div>
                 <input type="number" name="bit0" id="e2_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
                 <div class="linha_horizontal" id="e2_linha_bit0"></div>
@@ -176,6 +201,7 @@
         </div>
 
         <div class="clock_ondas">
+            <div class="entradas">CLK</div>
             <div>
                 <input type="number" name="bit0" id="clk_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
                 <div class="linha_horizontal" id="clk_linha_bit0"></div>
@@ -218,6 +244,7 @@
         </div>
 
         <div class="saida_ondas">
+            <div class="entradas">S</div>
             <div>
                 <input type="number" name="bit0" id="s_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
                 <div class="linha_horizontal" id="s_linha_bit0"></div>
@@ -258,7 +285,15 @@
                 <div class="linha_horizontal" id="s_linha_bit7"></div>
             </div>
         </div>
-
+        <div class="info">
+            E1 - ENTRADA 1
+            <br>
+            E2 - ENTRADA 2
+            <br>
+            CLK - CLOCK
+            <br>
+            S - SAÍDA
+        </div>
     </section>
 
     <script src="script.js"></script>
