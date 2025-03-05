@@ -16,6 +16,15 @@ section {
     margin: 16px 12px 0;
 }
 
+span {
+    font-size: 24px;
+}
+
+p {
+    font-size: 20px;
+    text-align: justify;
+}
+
 .analise_temporal_ondas, .clock_ondas, .entrada1_ondas, .entrada2_ondas, .saida_ondas {
     display: flex;
     justify-content: center;
