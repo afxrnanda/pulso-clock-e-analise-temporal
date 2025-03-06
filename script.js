@@ -168,30 +168,39 @@ function gerarPulso() {
         }
     });
 
-    // Lê as entradas (E1 e E2)
-    const bitsE1 = Array.from({ length: 8 }, (_, i) => parseInt(document.getElementById(`e1_bit${i}`).value));
-    const bitsE2 = Array.from({ length: 8 }, (_, i) => parseInt(document.getElementById(`e2_bit${i}`).value));
+    // Verifica o tipo de transição (positiva ou negativa)
+    const transicaoPositiva = document.getElementById("transicaoPositiva").checked;
 
-    // Obtém a operação lógica selecionada
-    const operacao = document.getElementById("operacao").value;
-
-    // Processa as entradas com base na operação selecionada
+    // Define o estado da saída com base no clock e no tipo de transição
     let bitsSaida;
-    switch (operacao) {
-        case "AND":
-            bitsSaida = bitsE1.map((bitE1, i) => bitE1 & bitsE2[i]);
-            break;
-        case "OR":
-            bitsSaida = bitsE1.map((bitE1, i) => bitE1 | bitsE2[i]);
-            break;
-        case "XOR":
-            bitsSaida = bitsE1.map((bitE1, i) => bitE1 ^ bitsE2[i]);
-            break;
-        case "NOT":
-            bitsSaida = bitsE1.map(bitE1 => bitE1 === 0 ? 1 : 0);
-            break;
-        default:
-            bitsSaida = bitsE1; // Padrão: mantém E1
+    if ((transicaoPositiva && currentPulseState === 1) || (!transicaoPositiva && currentPulseState === 0)) {
+        // Lê as entradas (E1 e E2)
+        const bitsE1 = Array.from({ length: 8 }, (_, i) => parseInt(document.getElementById(`e1_bit${i}`).value));
+        const bitsE2 = Array.from({ length: 8 }, (_, i) => parseInt(document.getElementById(`e2_bit${i}`).value));
+
+        // Obtém a operação lógica selecionada
+        const operacao = document.getElementById("operacao").value;
+
+        // Processa as entradas com base na operação selecionada
+        switch (operacao) {
+            case "AND":
+                bitsSaida = bitsE1.map((bitE1, i) => bitE1 & bitsE2[i]);
+                break;
+            case "OR":
+                bitsSaida = bitsE1.map((bitE1, i) => bitE1 | bitsE2[i]);
+                break;
+            case "XOR":
+                bitsSaida = bitsE1.map((bitE1, i) => bitE1 ^ bitsE2[i]);
+                break;
+            case "NOT":
+                bitsSaida = bitsE1.map(bitE1 => bitE1 === 0 ? 1 : 0);
+                break;
+            default:
+                bitsSaida = bitsE1; // Padrão: mantém E1
+        }
+    } else {
+        // Se o clock não permitir atualização, zera a saída
+        bitsSaida = Array.from({ length: 8 }, () => 0);
     }
 
     // Atualiza a saída (S)
