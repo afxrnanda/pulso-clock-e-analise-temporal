@@ -100,17 +100,22 @@
             </div>
             <div class="tempo">
                 <div>
-                    <label for="tempo">T =</label>
-                    <input type="text" name="tempo" id="tempo_seletor">
+                    <label for="frequencia">Frequência (Hz):</label>
+                    <input type="number" id="frequencia" placeholder="Ex: 1" oninput="atualizarClock()">
                 </div>
                 <div>
-                    <label for="tempo">X =</label>
-                    <input type="text" name="tempo" id="tempo_seletor">
+                    <label for="periodo">Período (ms):</label>
+                    <input type="number" id="periodo" placeholder="Ex: 1000" oninput="atualizarClock()">
                 </div>
             </div>
             <div class="saida">
                 <label for="saida">S = E1</label>
-                <input type="text" name="" id="">
+                <select id="operacao">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                    <option value="XOR">XOR</option>
+                    <option value="NOT">NOT (E1)</option>
+                </select>
                 <label for="saida">E2</label>
             </div>
         </div>
