@@ -159,6 +159,9 @@ canvas {
     justify-content: center;
     display: flex;
     gap: 50px;
+    position: relative;
+    bottom: 100px;
+    left: 50px;
 }
 .tempo {
     display: flex;
