@@ -90,6 +90,15 @@
         <div class="clock_info">
             <p><span>CLOCK:</span> É um trem de pulsos periódicos em forma de onda quadrada, utilizado para sincronizar operações em sistemas digitais. Em sistemas síncronos, as mudanças de estado ocorrem em momentos específicos, determinados pelas bordas do clock, que podem ser positivas ou negativas. A frequência do clock, medida em hertz (Hz), define a velocidade de operação do sistema. Abaixo você pode entender o funcionamento do clock alterando o tipo de transição, o tamanho da onda, as entradas e a operação, e verificando como essas mudanças afetam a saída.</p>
         </div>
+        <div class="info">
+            E1 - ENTRADA 1
+            <br>
+            E2 - ENTRADA 2
+            <br>
+            CLK - CLOCK
+            <br>
+            S - SAÍDA
+        </div>
         <div class="seletores">
             <div class="transicao-option">
                 <input type="radio" id="transicaoPositiva" name="pulseType" checked>
@@ -208,42 +217,42 @@
         <div class="clock_ondas">
             <div class="entradas">CLK</div>
             <div>
-                <input type="number" name="bit0" id="clk_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit0" id="clk_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="clk_linha_bit0"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="clk_lv_0"></div>
             <div>
-                <input type="number" name="bit1" id="clk_bit1" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit1" id="clk_bit1" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="clk_linha_bit1"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="clk_lv_1"></div>
             <div>
-                <input type="number" name="bit2" id="clk_bit2" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit2" id="clk_bit2" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="clk_linha_bit2"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="clk_lv_2"></div>
             <div>
-                <input type="number" name="bit3" id="clk_bit3" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit3" id="clk_bit3" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="clk_linha_bit3"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="clk_lv_3"></div>
             <div>
-                <input type="number" name="bit4" id="clk_bit4" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit4" id="clk_bit4" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="clk_linha_bit4"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="clk_lv_4"></div>
             <div>
-                <input type="number" name="bit5" id="clk_bit5" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit5" id="clk_bit5" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="clk_linha_bit5"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="clk_lv_5"></div>
             <div>
-                <input type="number" name="bit6" id="clk_bit6" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit6" id="clk_bit6" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="clk_linha_bit6"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="clk_lv_6"></div>
             <div>
-                <input type="number" name="bit7" id="clk_bit7" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit7" id="clk_bit7" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="clk_linha_bit7"></div>
             </div>
         </div>
@@ -251,53 +260,44 @@
         <div class="saida_ondas">
             <div class="entradas">S</div>
             <div>
-                <input type="number" name="bit0" id="s_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit0" id="s_bit0" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="s_linha_bit0"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="s_lv_0"></div>
             <div>
-                <input type="number" name="bit1" id="s_bit1" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit1" id="s_bit1" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="s_linha_bit1"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="s_lv_1"></div>
             <div>
-                <input type="number" name="bit2" id="s_bit2" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit2" id="s_bit2" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="s_linha_bit2"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="s_lv_2"></div>
             <div>
-                <input type="number" name="bit3" id="s_bit3" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit3" id="s_bit3" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="s_linha_bit3"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="s_lv_3"></div>
             <div>
-                <input type="number" name="bit4" id="s_bit4" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit4" id="s_bit4" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="s_linha_bit4"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="s_lv_4"></div>
             <div>
-                <input type="number" name="bit5" id="s_bit5" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit5" id="s_bit5" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="s_linha_bit5"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="s_lv_5"></div>
             <div>
-                <input type="number" name="bit6" id="s_bit6" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit6" id="s_bit6" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="s_linha_bit6"></div>
             </div>
             <div class="linha_vertical linha_vertical_invisivel" id="s_lv_6"></div>
             <div>
-                <input type="number" name="bit7" id="s_bit7" onchange="mudar_ondas()" placeholder=0 min=0 max=1>
+                <p type="number" name="bit7" id="s_bit7" onchange="mudar_ondas()" placeholder=0 min=0 max=1>0</p>
                 <div class="linha_horizontal" id="s_linha_bit7"></div>
             </div>
-        </div>
-        <div class="info">
-            E1 - ENTRADA 1
-            <br>
-            E2 - ENTRADA 2
-            <br>
-            CLK - CLOCK
-            <br>
-            S - SAÍDA
         </div>
     </section>
 

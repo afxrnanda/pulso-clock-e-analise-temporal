@@ -68,7 +68,7 @@ p {
     bottom: 150px;
 }
 
-.clock_ondas div input, .entrada1_ondas div input, .entrada2_ondas div input, .saida_ondas div input {
+.entrada1_ondas div input, .entrada2_ondas div input, .clock_ondas p, .saida_ondas p {
     width: 100%;
     max-width: 120px;
     color: #000;
@@ -94,6 +94,10 @@ p {
 .clock_ondas div .linha_horizontal_1, .entrada1_ondas div .linha_horizontal_1, .entrada2_ondas div .linha_horizontal_1, .saida_ondas div .linha_horizontal_1 {
     position: relative;
     bottom: 120px;
+}
+
+.saida_ondas {
+    margin-bottom: 50px;
 }
 
 /*Estilo do pulso*/
@@ -169,6 +173,6 @@ canvas {
     border-radius: 4px;
 }
 .info {
-    margin-top: 100px;
+    margin-top: 50px;
     font-size: x-large;
 }
