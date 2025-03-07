@@ -65,12 +65,10 @@
             </p>
         </div>
         <div class="container">
-            <!-- Campo de entrada para o tempo do clock -->
             <div class="inputs">
                 <label for="clockTime">Tempo do Clock (ms):</label>
                 <input type="number" id="clockTime" placeholder="Ex: 100" oninput="updateWave()">
                 
-                <!-- Caixinhas para selecionar o tipo de pulso -->
                 <div class="pulse-selection">
                     <div class="pulse-option" onclick="selectPulse('positive')">
                         <input type="radio" id="positivePulse" name="pulseType" checked>
@@ -83,8 +81,7 @@
                 </div>
             </div>
             
-            <!-- Canvas para desenhar a onda -->
-            <canvas id="waveCanvas" title="Borda de subida: Transição do nível baixo para o nível alto. Borda de descida: Transição do nível alto para o nível baixo."></canvas>
+            <canvas id="waveCanvas" title=""></canvas>
         </div>
     </section>
 

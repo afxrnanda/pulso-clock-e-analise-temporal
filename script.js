@@ -5,7 +5,7 @@ function mudar_ondas() {
         const linhas_verticais = Array.from({ length: 7 }, (_, i) => document.getElementById(`${prefix}_lv_${i}`));
 
         bits.forEach((bit, i) => {
-            const valorBit = bit.value; // Pega o valor do input
+            const valorBit = bit.value;
 
             if (valorBit == 0) {
                 linhas_horizontais[i].classList.add("linha_horizontal_0");
@@ -17,11 +17,10 @@ function mudar_ondas() {
                 console.log(`valor do bit ${valorBit} não definido.`);
             } else {
                 alert("Bits seguem um sistema de base 2 (binário), ou seja, os valores só podem ser 0 ou 1.");
-                bit.value = ""; // Limpa o input com valor inválido
+                bit.value = "";
             }
         });
 
-        // Atualiza as linhas verticais após processar as linhas horizontais
         linhas_verticais.forEach((linha, i) => {
             const mesma_classe =
                 (linhas_horizontais[i].classList.contains("linha_horizontal_0") && linhas_horizontais[i + 1].classList.contains("linha_horizontal_0")) ||
@@ -36,18 +35,17 @@ function mudar_ondas() {
     });
 }
 
-//------------------
 const canvas = document.getElementById("waveCanvas");
 const context = canvas.getContext("2d");
-canvas.width = 1200;
-canvas.height = 600;
+canvas.width = 700;
+canvas.height = 350;
 
 let pulseType = "positive";
 
 function drawWave(clockTime) {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    const midY = canvas.height / 2;
+    const midY = canvas.height;
     const amplitude = 80;
     const scale = 5;
     const tHigh = clockTime * scale;
@@ -116,7 +114,7 @@ function selectPulse(type) {
     updateWave();
 }
 
-document.getElementById("clockTime").addEventListener("input", function() {
+document.getElementById("clockTime").addEventListener("input", function () {
     this.value = this.value.replace(/[^0-9]/g, "");
     updateWave();
 });
@@ -124,16 +122,26 @@ document.getElementById("clockTime").addEventListener("input", function() {
 canvas.addEventListener("mousemove", (event) => {
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
+    
+    const clockTime = parseInt(document.getElementById("clockTime").value) || 100;
+    const period = clockTime * 5 * 2;
     const midY = canvas.height / 2;
     const amplitude = 80;
-    const period = (parseInt(document.getElementById("clockTime").value) || 100) * 5 * 2;
-    const phase = (x - 50) % period;
 
-    if (phase < period / 4) {
+    const relativeX = x - 50; 
+    if (relativeX < 0) return; // Fora do eixo
+
+    const cyclePosition = relativeX % period;
+
+    // Definir os pontos de transição
+    const subidaStart = 0;
+    const subidaEnd = period / 4;
+    const descidaStart = period / 2;
+    const descidaEnd = (3 * period) / 4;
+
+    if (cyclePosition >= subidaStart && cyclePosition < subidaEnd) {
         canvas.title = "Borda de Subida: Ocorre quando o sinal faz a transição do nível baixo (0 lógico) para o nível alto (1 lógico). Essa transição representa uma ativação do sinal, a saída do estado de repouso.";
-    } else if (phase > period / 2 && phase < 3 * period / 4) {
+    } else if (cyclePosition >= descidaStart && cyclePosition < descidaEnd) {
         canvas.title = "Borda de Descida: Ocorre quando o sinal faz a transição do nível alto (1 lógico) para o nível baixo (0 lógico). Essa transição representa o retorno ao estado de repouso.";
     } else {
         canvas.title = "";
@@ -143,44 +151,31 @@ canvas.addEventListener("mousemove", (event) => {
 document.getElementById("clockTime").value = 100;
 updateWave();
 
-document.getElementById("clockTime").value = 100;
-updateWave();
-
-// Configuração inicial
-document.getElementById("clockTime").value = 100; // Valor padrão
-updateWave(); // Desenha o gráfico inicial
-
-let clockInterval; // Variável para armazenar o intervalo do clock
-let currentPulseState = 0; // Estado atual do pulso (0 ou 1)
-let transitionType = "positive"; // Tipo de transição (positiva ou negativa)
-let ultimoCampoAlterado = "frequencia"; // Rastreia qual campo foi alterado por último
+let clockInterval;
+let currentPulseState = 0;
+let transitionType = "positive";
+let ultimoCampoAlterado = "frequencia";
 
 function atualizarClock(event) {
     const frequencia = parseFloat(document.getElementById("frequencia").value);
     const periodo = parseFloat(document.getElementById("periodo").value);
 
-    // Determina qual campo foi alterado
     if (event?.target.id === "frequencia") {
         ultimoCampoAlterado = "frequencia";
     } else if (event?.target.id === "periodo") {
         ultimoCampoAlterado = "periodo";
     }
 
-    // Se a frequência foi alterada, recalcula o período
     if (ultimoCampoAlterado === "frequencia" && !isNaN(frequencia) && frequencia > 0) {
         document.getElementById("periodo").value = (1000 / frequencia).toFixed(2);
-    } 
-    // Se o período foi alterado, recalcula a frequência
-    else if (ultimoCampoAlterado === "periodo" && !isNaN(periodo) && periodo > 0) {
+    } else if (ultimoCampoAlterado === "periodo" && !isNaN(periodo) && periodo > 0) {
         document.getElementById("frequencia").value = (1000 / periodo).toFixed(2);
     }
 
-    // Limpa o clock anterior antes de iniciar um novo
     if (clockInterval) {
         clearInterval(clockInterval);
     }
 
-    // Define novo período do clock
     const novoPeriodo = parseFloat(document.getElementById("periodo").value);
     if (!isNaN(novoPeriodo) && novoPeriodo > 0) {
         clockInterval = setInterval(gerarPulso, novoPeriodo);
@@ -188,17 +183,14 @@ function atualizarClock(event) {
 }
 
 function gerarPulso() {
-    // Alterna o estado do pulso (0 → 1 ou 1 → 0)
     currentPulseState = currentPulseState === 0 ? 1 : 0;
 
-    // Obtém os bits do clock e suas linhas visuais
     const bitsClock = Array.from({ length: 8 }, (_, i) => document.getElementById(`clk_bit${i}`));
     const linhasHorizontaisClock = Array.from({ length: 8 }, (_, i) => document.getElementById(`clk_linha_bit${i}`));
     const linhasVerticaisClock = Array.from({ length: 7 }, (_, i) => document.getElementById(`clk_lv_${i}`));
 
-    // Atualiza os bits e as linhas horizontais do clock
     bitsClock.forEach((bit, i) => {
-        bit.innerText = currentPulseState; // Atualiza o texto do <p> para 0 ou 1
+        bit.innerText = currentPulseState;
         if (currentPulseState === 0) {
             linhasHorizontaisClock[i].classList.add("linha_horizontal_0");
             linhasHorizontaisClock[i].classList.remove("linha_horizontal_1");
@@ -208,7 +200,6 @@ function gerarPulso() {
         }
     });
 
-    // Atualiza as linhas verticais do clock
     linhasVerticaisClock.forEach((linha, i) => {
         const mesmaClasse =
             (linhasHorizontaisClock[i].classList.contains("linha_horizontal_0") && linhasHorizontaisClock[i + 1].classList.contains("linha_horizontal_0")) ||
@@ -221,7 +212,6 @@ function gerarPulso() {
         }
     });
 
-    // Verifica o tipo de transição (positiva ou negativa)
     if (transitionType === "positive") {
         if (currentPulseState === 1) {
             processarEntradas();
@@ -239,14 +229,14 @@ function gerarPulso() {
 
 function resetarSaidaParaZero() {
     const bitsS = Array.from({ length: 8 }, (_, i) => document.getElementById(`s_bit${i}`));
-    
+
     bitsS.forEach((bit, i) => {
-        if (bit) { // Verifica se o elemento existe antes de acessar innerText
+        if (bit) {
             bit.innerText = 0;
         }
 
         const linha = document.getElementById(`s_linha_bit${i}`);
-        if (linha) { 
+        if (linha) {
             linha.classList.add("linha_horizontal_0");
             linha.classList.remove("linha_horizontal_1");
         }
@@ -286,7 +276,6 @@ function processarEntradas() {
             bitsSaida = bitsE1;
     }
 
-    // Atualiza a saída (S) com as classes CSS correspondentes
     const bitsS = Array.from({ length: 8 }, (_, i) => document.getElementById(`s_bit${i}`));
     bitsSaida.forEach((bit, i) => {
         bitsS[i].innerText = bit;
@@ -301,7 +290,6 @@ function processarEntradas() {
         }
     });
 
-    // Atualiza as linhas verticais com base nos bits de saída
     const linhasVerticais = Array.from({ length: 7 }, (_, i) => document.getElementById(`s_lv_${i}`));
     linhasVerticais.forEach((linha, i) => {
         const mesmaClasse =
@@ -316,7 +304,6 @@ function processarEntradas() {
     });
 }
 
-// Funções para alternar o tipo de transição
 document.getElementById("transicaoPositiva").addEventListener("change", () => {
     transitionType = "positive";
     atualizarClock();
@@ -327,6 +314,5 @@ document.getElementById("transicaoNegativa").addEventListener("change", () => {
     atualizarClock();
 });
 
-// Inicializa os eventos para os campos de frequência e período
 document.getElementById("frequencia").addEventListener("input", atualizarClock);
 document.getElementById("periodo").addEventListener("input", atualizarClock);
