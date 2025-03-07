@@ -173,11 +173,42 @@ function gerarPulso() {
     });
 
     // Verifica o tipo de transição (positiva ou negativa)
-    if ((transitionType === "positive" && currentPulseState === 1) || 
-        (transitionType === "negative" && currentPulseState === 0)) {
-        processarEntradas();
+    if (transitionType === "positive") {
+        if (currentPulseState === 1) {
+            processarEntradas();
+        } else {
+            resetarSaidaParaZero();
+        }
+    } else if (transitionType === "negative") {
+        if (currentPulseState === 0) {
+            processarEntradas();
+        } else {
+            resetarSaidaParaZero();
+        }
     }
 }
+
+function resetarSaidaParaZero() {
+    const bitsS = Array.from({ length: 8 }, (_, i) => document.getElementById(`s_bit${i}`));
+    
+    bitsS.forEach((bit, i) => {
+        if (bit) { // Verifica se o elemento existe antes de acessar innerText
+            bit.innerText = 0;
+        }
+
+        const linha = document.getElementById(`s_linha_bit${i}`);
+        if (linha) { 
+            linha.classList.add("linha_horizontal_0");
+            linha.classList.remove("linha_horizontal_1");
+        }
+
+        const vertical = document.getElementById(`s_lv_${i}`);
+        if (vertical) {
+            vertical.classList.add("linha_vertical_invisivel");
+        }
+    });
+}
+
 
 function processarEntradas() {
     const bitsE1 = Array.from({ length: 8 }, (_, i) => parseInt(document.getElementById(`e1_bit${i}`).value));
