@@ -260,7 +260,10 @@ function resetarSaidaParaZero() {
 
 
 function processarEntradas() {
-    const bitsE1 = Array.from({ length: 8 }, (_, i) => parseInt(document.getElementById(`e1_bit${i}`).value));
+    const bitsE1 = Array.from({ length: 8 }, (_, i) => {
+        const input = document.getElementById(`e1_bit${i}`);
+        return input.value === "" || isNaN(input.value) ? 0 : parseInt(input.value);
+    });
     const bitsE2 = Array.from({ length: 8 }, (_, i) => parseInt(document.getElementById(`e2_bit${i}`).value));
 
     const operacao = document.getElementById("operacao").value;
