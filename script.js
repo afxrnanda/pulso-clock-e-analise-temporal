@@ -42,13 +42,16 @@ const context = canvas.getContext("2d");
 canvas.width = 1200;
 canvas.height = 600;
 
-let pulseType = "positive"; // Tipo de pulso padrão
+let pulseType = "positive"; 
 
 function drawWave(clockTime) {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     const midY = canvas.height / 2;
     const amplitude = 80;
+    const scale = 5; 
+    const tHigh = clockTime * scale;
+    const tLow = clockTime * scale;
 
     // Desenha os eixos X e Y
     context.beginPath();
@@ -64,20 +67,32 @@ function drawWave(clockTime) {
     context.beginPath();
     context.moveTo(x, midY);
 
-    // Converte tempo para pixels (escala: 1ms = 2px)
-    const scale = 2;
-    const pulseLength = clockTime * scale;
-
     while (x < canvas.width) {
         if (pulseType === "positive") {
+            // Borda de subida
+            context.lineTo(x + tHigh / 4, midY - amplitude);
+            context.lineTo(x + (3 * tHigh) / 4, midY - amplitude);
+            x += tHigh;
+            // Mantém nível alto
             context.lineTo(x, midY - amplitude);
-            x += pulseLength;
-            context.lineTo(x, midY - amplitude);
+            // Borda de descida 
+            context.lineTo(x + tLow / 4, midY);
+            context.lineTo(x + (3 * tLow) / 4, midY);
+            x += tLow;
+            // Mantém nível baixo
             context.lineTo(x, midY);
         } else {
+            // Borda de descida 
+            context.lineTo(x + tHigh / 4, midY + amplitude);
+            context.lineTo(x + (3 * tHigh) / 4, midY + amplitude);
+            x += tHigh;
+            // Mantém nível baixo
             context.lineTo(x, midY + amplitude);
-            x += pulseLength;
-            context.lineTo(x, midY + amplitude);
+            // Borda de subida 
+            context.lineTo(x + tLow / 4, midY);
+            context.lineTo(x + (3 * tLow) / 4, midY);
+            x += tLow;
+            // Mantém nível alto
             context.lineTo(x, midY);
         }
     }
@@ -88,7 +103,14 @@ function drawWave(clockTime) {
 }
 
 function updateWave() {
-    const clockTime = parseInt(document.getElementById("clockTime").value) || 100;
+    let clockTime = parseInt(document.getElementById("clockTime").value) || 100;
+    if (clockTime < 1) {
+        document.getElementById("clockTime").value = 1;
+        clockTime = 1;
+    } else if (clockTime > 150) {
+        document.getElementById("clockTime").value = 150;
+        clockTime = 150;
+    }
     drawWave(clockTime);
 }
 
@@ -96,6 +118,30 @@ function selectPulse(type) {
     pulseType = type;
     updateWave();
 }
+
+document.getElementById("clockTime").addEventListener("input", function() {
+    this.value = this.value.replace(/[^0-9]/g, "");
+    updateWave();
+});
+
+// Adiciona tooltip ao passar o mouse sobre o gráfico
+canvas.addEventListener("mousemove", (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const midY = canvas.height / 2;
+    const amplitude = 80;
+
+    if (y >= midY - amplitude && y <= midY + amplitude) {
+        canvas.title = "Borda de subida: Transição do nível baixo para o nível alto.\nBorda de descida: Transição do nível alto para o nível baixo.";
+    } else {
+        canvas.title = "";
+    }
+});
+
+document.getElementById("clockTime").value = 100;
+updateWave();
 
 // Configuração inicial
 document.getElementById("clockTime").value = 100; // Valor padrão
