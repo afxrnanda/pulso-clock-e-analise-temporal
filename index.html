@@ -60,9 +60,11 @@
 
     <section id="pulso">
         <div class="pulso_info">
-            <p><span>PULSO:</span> É uma variação de nível lógico em um sinal digital, podendo ser positivo quando ocorre em nível alto ou negativo quando ocorre em nível baixo. A transição entre esses níveis leva um determinado tempo, por isso as ondas não são retas como na representação da análise temporal. Abaixo você pode entender como funciona o pulso alterando o tipo de pulso e o tempo do clock:</p>
+            <p>
+                <span>PULSO:</span> É uma variação de nível lógico em um sinal digital, podendo ser positivo quando ocorre em nível alto ou negativo quando ocorre em nível baixo. A transição entre esses níveis leva um determinado tempo, por isso as ondas não são retas como na representação da análise temporal. Abaixo você pode entender como funciona o pulso alterando o tipo de pulso e o tempo do clock:
+            </p>
         </div>
-        <div class="container">    
+        <div class="container">
             <!-- Campo de entrada para o tempo do clock -->
             <div class="inputs">
                 <label for="clockTime">Tempo do Clock (ms):</label>
@@ -80,9 +82,9 @@
                     </div>
                 </div>
             </div>
-    
-            <!-- Área do gráfico -->
-            <canvas id="waveCanvas" width="1200" height="600"></canvas>
+            
+            <!-- Canvas para desenhar a onda -->
+            <canvas id="waveCanvas" title="Borda de subida: Transição do nível baixo para o nível alto. Borda de descida: Transição do nível alto para o nível baixo."></canvas>
         </div>
     </section>
 

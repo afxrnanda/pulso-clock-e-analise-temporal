@@ -42,18 +42,17 @@ const context = canvas.getContext("2d");
 canvas.width = 1200;
 canvas.height = 600;
 
-let pulseType = "positive"; 
+let pulseType = "positive";
 
 function drawWave(clockTime) {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     const midY = canvas.height / 2;
     const amplitude = 80;
-    const scale = 5; 
+    const scale = 5;
     const tHigh = clockTime * scale;
     const tLow = clockTime * scale;
 
-    // Desenha os eixos X e Y
     context.beginPath();
     context.moveTo(50, 0);
     context.lineTo(50, canvas.height);
@@ -63,37 +62,35 @@ function drawWave(clockTime) {
     context.lineWidth = 2;
     context.stroke();
 
-    let x = 50;  // Começa a partir de 50px (depois do eixo Y)
+    context.font = "14px Arial";
+    context.fillStyle = "black";
+    context.fillText("1", 30, midY - amplitude - 5);
+    context.fillText("0", 30, midY + 15);
+    context.fillText("t", canvas.width - 20, midY + 20);
+
+    let x = 50;
     context.beginPath();
-    context.moveTo(x, midY);
+    context.moveTo(x, pulseType === "positive" ? midY : midY - amplitude);
 
     while (x < canvas.width) {
         if (pulseType === "positive") {
-            // Borda de subida
             context.lineTo(x + tHigh / 4, midY - amplitude);
             context.lineTo(x + (3 * tHigh) / 4, midY - amplitude);
             x += tHigh;
-            // Mantém nível alto
             context.lineTo(x, midY - amplitude);
-            // Borda de descida 
             context.lineTo(x + tLow / 4, midY);
             context.lineTo(x + (3 * tLow) / 4, midY);
             x += tLow;
-            // Mantém nível baixo
             context.lineTo(x, midY);
         } else {
-            // Borda de descida 
-            context.lineTo(x + tHigh / 4, midY + amplitude);
-            context.lineTo(x + (3 * tHigh) / 4, midY + amplitude);
+            context.lineTo(x + tHigh / 4, midY);
+            context.lineTo(x + (3 * tHigh) / 4, midY);
             x += tHigh;
-            // Mantém nível baixo
-            context.lineTo(x, midY + amplitude);
-            // Borda de subida 
-            context.lineTo(x + tLow / 4, midY);
-            context.lineTo(x + (3 * tLow) / 4, midY);
-            x += tLow;
-            // Mantém nível alto
             context.lineTo(x, midY);
+            context.lineTo(x + tLow / 4, midY - amplitude);
+            context.lineTo(x + (3 * tLow) / 4, midY - amplitude);
+            x += tLow;
+            context.lineTo(x, midY - amplitude);
         }
     }
 
@@ -124,7 +121,6 @@ document.getElementById("clockTime").addEventListener("input", function() {
     updateWave();
 });
 
-// Adiciona tooltip ao passar o mouse sobre o gráfico
 canvas.addEventListener("mousemove", (event) => {
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -132,13 +128,20 @@ canvas.addEventListener("mousemove", (event) => {
 
     const midY = canvas.height / 2;
     const amplitude = 80;
+    const period = (parseInt(document.getElementById("clockTime").value) || 100) * 5 * 2;
+    const phase = (x - 50) % period;
 
-    if (y >= midY - amplitude && y <= midY + amplitude) {
-        canvas.title = "Borda de subida: Transição do nível baixo para o nível alto.\nBorda de descida: Transição do nível alto para o nível baixo.";
+    if (phase < period / 4) {
+        canvas.title = "Borda de Subida: Ocorre quando o sinal faz a transição do nível baixo (0 lógico) para o nível alto (1 lógico). Essa transição representa uma ativação do sinal, a saída do estado de repouso.";
+    } else if (phase > period / 2 && phase < 3 * period / 4) {
+        canvas.title = "Borda de Descida: Ocorre quando o sinal faz a transição do nível alto (1 lógico) para o nível baixo (0 lógico). Essa transição representa o retorno ao estado de repouso.";
     } else {
         canvas.title = "";
     }
 });
+
+document.getElementById("clockTime").value = 100;
+updateWave();
 
 document.getElementById("clockTime").value = 100;
 updateWave();
